@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>无缝滚动</title>
+	<meta charset="UTF-8" />
+</head>
+<style type="text/css">
+*{margin: 0;padding: 0;}
+	#div1{position: relative;border:1px solid #0ff;width:1100px; height: 180px;margin:50px auto 0;overflow: hidden;}
+	#div1 ul{position: absolute;left: 0;}
+	#div1 ul li{list-style: none;width:200px;float: left;padding: 10px;height: 160px;}
+	#div1 ul li img{width:100%;}
+</style>
+<script type="text/javascript">
+	window.onload=function(){
+		var oDiv=document.getElementById('div1');
+		var oUl=oDiv.getElementsByTagName('ul')[0];
+		var aLi=oUl.getElementsByTagName('li');
+		var aA=document.getElementsByTagName('a');//获取向右向左的箭头
+		var timer=null;
+		var iSpeed=10;
+		oUl.innerHTML+=oUl.innerHTML;//定义图片可以循环播放
+		oUl.style.width=aLi.length*aLi[0].offsetWidth+'px';//定义外层ul的宽度，根据图片的个数和每个图片的宽度计算，保证总宽度是可调整的
+		function fnMove(){
+			if(oUl.offsetLeft<-oUl.offsetWidth/2){
+				oUl.style.left=0;
+			}else if(oUl.offsetLeft>0){
+				oUl.style.left=-oUl.offsetWidth/2+'px';
+			}//定义到边界的时候，实现无缝衔接
+			oUl.style.left=oUl.offsetLeft+iSpeed+'px';
+//定义图片的右边距随着速度不断不断增加，或减小，实现运动的效果
+		}
+		
+//		timer=setInterval(fnMove,300);
+		
+//		fnMove();
+		aA[0].onclick=function(){
+			iSpeed=20;
+//按下左箭头，定义向左运动
+		}
+		aA[1].onclick=function(){
+			iSpeed=-20;
+//按下右箭头，定义向右运动
+		}
+		
+		
+		
+		
+		oDiv.onmouseover=function(){
+			clearInterval(timer);
+//鼠标移动到图片上，清除定时器，停止运动
+		}
+		oDiv.onmouseout=function(){
+			timer=setInterval(fnMove,300);
+//鼠标移出，重新开启定时器，重新运动
+		}
+	};
+</script>
+<body>
+	<a href="javascript:;">往前看</a>
+	<a href="javascript:;">往后看</a>
+<div id="div1">
+	<ul>
+		<li><img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3037452530,2482953505&fm=173&app=25&f=JPEG?w=218&h=146&s=74D01BD5080766DECF810AAE03001002"></li>
+		<li><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1383709423,1036222598&fm=173&app=25&f=JPEG?w=218&h=146&s=FC3C04D748B2519472AEBCF903001039"></li>
+		<li><img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1638547908,2724319200&fm=173&app=25&f=JPEG?w=218&h=146&s=760C9F47AE5331D40214882B03007052"></li>
+		<li><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1972769290,339209303&fm=173&app=25&f=JPEG?w=218&h=146&s=46F03CD0571343D85A4429D20300C0E2"></li>
+		<li><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1342071586,758594629&fm=173&app=25&f=JPEG?w=218&h=146&s=C731EC6CC456D7765C24599B0300508C"></li>
+		<div style="clear: none;"></div>
+	</ul>
+</div>
+</body>
+</html>
