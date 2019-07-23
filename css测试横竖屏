@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>css测试横竖屏</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        /*竖屏*/
+        @media screen and (orientation:portrait) {
+            div {
+                border: 1px solid red;
+                background-color: red;
+                width: 100px;
+                height: 100px;
+            }
+        }
+        /*横屏*/
+        @media screen and (orientation:landscape) {
+            div {
+                border: 1px solid green;
+                background-color: green;
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>横屏绿色，竖屏红色</h1>
+    <div></div>
+</body>
+</html>
