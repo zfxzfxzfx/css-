@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>联动下拉框</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <select id="Select1" onchange="ld()">
+        <option value="">请选择</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    <select id="Select2">
+        <option value="">请选择</option>
+        <option value="2a">2a</option>
+        <option value="2b">2b</option>
+        <option value="2c">2c</option>
+    </select>
+    <script type="text/javascript">
+        function ld() {
+            debugger
+            var obj = document.getElementById("Select1");
+            var obj2 = document.getElementById("Select2");
+            var options = obj.options;
+            var options2 = obj2.options;
+            var len = options.length;
+            for (var i = 0; i < len; i++) {
+                if (options[i].value == "2") {
+                    options2[i].defaultSelected = true;
+                    options2[i].selected = true;
+                    return true;
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>
