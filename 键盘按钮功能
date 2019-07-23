@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <!--<meta http-equiv="refresh" content="5;url=http://localhost:2473/index.html">--> 
+    <script type="text/javascript">
+        document.onkeyup = function (event) {
+            var e = event || window.event;
+            var keyCode = e.keyCode || e.which;
+            switch (keyCode) {
+                case 32:
+                    alert("空格");
+                    break;
+                case 37:
+                    alert("←");
+                    break;
+                case 38:
+                    alert("↑");
+                    break;
+                case 39:
+                    alert("→");
+                    break;
+                case 40:
+                    alert("↓");
+                    break;
+                case 116:
+                    e.keyCode = 0;
+                    e.cancelBubble = true;
+                    return false;
+                default:
+                   // alert(keyCode);
+            }
+        }
+
+        document.onkeydown = function (e) {
+            e = window.event || e;
+            var keyCode = e.keyCode || e.which;
+            //debugger
+            if (keyCode == 116)
+            {
+                if (window.event) {
+                    try {
+                        e.keyCode = 0;
+                    } catch (e) {
+                        e.returnValie = false;
+                    }
+                } else {
+                    e.preventDefault();
+                }
+            }
+        }
+
+        function downloadFile(fileName, content) {
+            //var aLink = document.createElement('a');
+            //var blob = new Blob([content]);
+            //var evt = document.createEvent("HTMLEvents");
+            //evt.initEvent("click", false, false);
+            //aLink.download = fileName;
+            //aLink.href = URL.createObjectURL(blob);
+            //aLink.dispatchEvent(evt);
+        }
+
+        
+    </script>
+</head>
+<body>
+    <h1>键盘按钮功能</h1>
+    <p>空格    键</p>
+    <p>上方向 ↑ 键</p>
+    <p>下方向 ↓ 键</p>
+    <p>左方向  ← 键</p>
+    <p>右方向 → 键</p>
+    <img src="images/btn_bg.png" />
+    <a href="images/btn_bg.png" download="" onclick="downloadFile()">HTML5支持下载</a>
+    <input type="text" />
+</body>
+</html>
